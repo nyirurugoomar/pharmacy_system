@@ -119,6 +119,7 @@ __decorate([
 exports.PharmacistController = PharmacistController = __decorate([
     (0, swagger_1.ApiTags)('Pharmacist'),
     (0, common_1.UseGuards)((0, passport_1.AuthGuard)('jwt')),
+    (0, swagger_1.ApiBearerAuth)('JWT-auth'),
     (0, common_1.Controller)('pharmacist'),
     __metadata("design:paramtypes", [pharmacist_service_1.PharmacistService])
 ], PharmacistController);

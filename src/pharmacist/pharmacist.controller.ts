@@ -1,5 +1,5 @@
 import { Controller, Post, Get, Body, Param, Put, Query, UseGuards } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger';
 import { PharmacistService } from './pharmacist.service';
 import { CreateMedicineDto } from './dto/create-medicine';
 import { CreatePharmacistDto } from './dto/create-pharmacist';
@@ -10,6 +10,7 @@ import { Roles } from '../auth/roles.decorator';
 
 @ApiTags('Pharmacist')
 @UseGuards(AuthGuard('jwt'))
+@ApiBearerAuth('JWT-auth')
 @Controller('pharmacist')
 export class PharmacistController {
   constructor(private readonly pharmacistService: PharmacistService) {}
