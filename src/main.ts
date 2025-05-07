@@ -7,9 +7,13 @@ async function bootstrap() {
   
   // Configure CORS
   app.enableCors({
-    origin: /^http:\/\/localhost:\d+$/, // Allow any localhost port
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    origin: [
+      'https://pharmacy-application.netlify.app',
+      'http://localhost:5173', // For local development
+      'http://localhost:3000'  // For local development
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
     credentials: true,
   });
 
