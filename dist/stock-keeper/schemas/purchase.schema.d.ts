@@ -1,8 +1,13 @@
 import { Document } from 'mongoose';
 export declare class Purchase extends Document {
-    depotName: string;
-    amountPaid: number;
-    paymentStatus: string;
+    medicineName: string;
+    quantity: number;
+    unitPrice: number;
+    supplier: string;
+    purchaseDate: Date;
+    totalAmount: number;
+    status: string;
+    notes: string;
 }
 export declare const PurchaseSchema: import("mongoose").Schema<Purchase, import("mongoose").Model<Purchase, any, any, any, Document<unknown, any, Purchase> & Purchase & Required<{
     _id: unknown;

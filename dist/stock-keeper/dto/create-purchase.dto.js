@@ -10,20 +10,54 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreatePurchaseDto = void 0;
+const class_validator_1 = require("class-validator");
 const swagger_1 = require("@nestjs/swagger");
 class CreatePurchaseDto {
 }
 exports.CreatePurchaseDto = CreatePurchaseDto;
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 'Depot A', description: 'Name of the depot' }),
+    (0, swagger_1.ApiProperty)({ example: 'Paracetamol 500mg', description: 'Name of the medicine' }),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreatePurchaseDto.prototype, "depotName", void 0);
+], CreatePurchaseDto.prototype, "medicineName", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 1000, description: 'Amount paid for the purchase' }),
+    (0, swagger_1.ApiProperty)({ example: 100, description: 'Quantity of medicine purchased' }),
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.Min)(1),
     __metadata("design:type", Number)
-], CreatePurchaseDto.prototype, "amountPaid", void 0);
+], CreatePurchaseDto.prototype, "quantity", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 'Paid', description: 'Payment status (Paid or Credit)' }),
+    (0, swagger_1.ApiProperty)({ example: 0.5, description: 'Price per unit' }),
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], CreatePurchaseDto.prototype, "unitPrice", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 'ABC Suppliers', description: 'Name of the supplier' }),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreatePurchaseDto.prototype, "paymentStatus", void 0);
+], CreatePurchaseDto.prototype, "supplier", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: '2024-03-20', description: 'Date of purchase' }),
+    (0, class_validator_1.IsDate)(),
+    __metadata("design:type", Date)
+], CreatePurchaseDto.prototype, "purchaseDate", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 50, description: 'Total amount of purchase' }),
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], CreatePurchaseDto.prototype, "totalAmount", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 'pending', description: 'Status of the purchase' }),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreatePurchaseDto.prototype, "status", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 'Regular monthly supply', description: 'Additional notes' }),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreatePurchaseDto.prototype, "notes", void 0);
 //# sourceMappingURL=create-purchase.dto.js.map

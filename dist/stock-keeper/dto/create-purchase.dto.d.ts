@@ -1,5 +1,10 @@
 export declare class CreatePurchaseDto {
-    depotName: string;
-    amountPaid: number;
-    paymentStatus: 'Paid' | 'Credit';
+    medicineName: string;
+    quantity: number;
+    unitPrice: number;
+    supplier: string;
+    purchaseDate: Date;
+    totalAmount: number;
+    status?: string;
+    notes?: string;
 }

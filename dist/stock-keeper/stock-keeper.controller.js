@@ -29,11 +29,21 @@ let StockKeeperController = class StockKeeperController {
     getAllPurchases() {
         return this.stockKeeperService.getAllPurchases();
     }
+    getTotalPurchases() {
+        return this.stockKeeperService.getTotalPurchases();
+    }
+    getOutstandingCredits() {
+        return this.stockKeeperService.getOutstandingCredits();
+    }
+    getPurchaseSummary() {
+        return this.stockKeeperService.getPurchaseSummary();
+    }
 };
 exports.StockKeeperController = StockKeeperController;
 __decorate([
     (0, roles_decorator_1.Roles)('admin', 'stock-keeper'),
     (0, common_1.Post)('purchase'),
+    (0, swagger_1.ApiOperation)({ summary: 'Create a new purchase' }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_purchase_dto_1.CreatePurchaseDto]),
@@ -42,10 +52,38 @@ __decorate([
 __decorate([
     (0, roles_decorator_1.Roles)('admin', 'stock-keeper'),
     (0, common_1.Get)('purchases'),
+    (0, swagger_1.ApiOperation)({ summary: 'Get all purchases' }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], StockKeeperController.prototype, "getAllPurchases", null);
+__decorate([
+    (0, roles_decorator_1.Roles)('admin', 'stock-keeper'),
+    (0, common_1.Get)('total-purchases'),
+    (0, swagger_1.ApiOperation)({ summary: 'Get total purchases summary' }),
+    (0, swagger_1.ApiResponse)({ description: 'Returns total amount, number of purchases, and total quantity' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], StockKeeperController.prototype, "getTotalPurchases", null);
+__decorate([
+    (0, roles_decorator_1.Roles)('admin', 'stock-keeper'),
+    (0, common_1.Get)('outstanding-credits'),
+    (0, swagger_1.ApiOperation)({ summary: 'Get outstanding credits summary' }),
+    (0, swagger_1.ApiResponse)({ description: 'Returns total outstanding amount and number of pending purchases' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], StockKeeperController.prototype, "getOutstandingCredits", null);
+__decorate([
+    (0, roles_decorator_1.Roles)('admin', 'stock-keeper'),
+    (0, common_1.Get)('summary'),
+    (0, swagger_1.ApiOperation)({ summary: 'Get complete purchase summary' }),
+    (0, swagger_1.ApiResponse)({ description: 'Returns combined summary of total purchases and outstanding credits' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], StockKeeperController.prototype, "getPurchaseSummary", null);
 exports.StockKeeperController = StockKeeperController = __decorate([
     (0, swagger_1.ApiTags)('Stock Keeper'),
     (0, common_1.UseGuards)((0, passport_1.AuthGuard)('jwt')),

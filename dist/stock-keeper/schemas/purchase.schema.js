@@ -17,22 +17,47 @@ let Purchase = class Purchase extends mongoose_2.Document {
 };
 exports.Purchase = Purchase;
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 'Depot A', description: 'Name of the depot' }),
+    (0, swagger_1.ApiProperty)({ example: 'Paracetamol 500mg', description: 'Name of the medicine' }),
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
-], Purchase.prototype, "depotName", void 0);
+], Purchase.prototype, "medicineName", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 1000, description: 'Amount paid for the purchase' }),
+    (0, swagger_1.ApiProperty)({ example: 100, description: 'Quantity of medicine purchased' }),
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", Number)
-], Purchase.prototype, "amountPaid", void 0);
+], Purchase.prototype, "quantity", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 'Paid', description: 'Payment status (Paid or Credit)' }),
-    (0, mongoose_1.Prop)({ required: true, enum: ['Paid', 'Credit'] }),
+    (0, swagger_1.ApiProperty)({ example: 0.5, description: 'Price per unit' }),
+    (0, mongoose_1.Prop)({ required: true }),
+    __metadata("design:type", Number)
+], Purchase.prototype, "unitPrice", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 'ABC Suppliers', description: 'Name of the supplier' }),
+    (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
-], Purchase.prototype, "paymentStatus", void 0);
+], Purchase.prototype, "supplier", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: '2024-03-20', description: 'Date of purchase' }),
+    (0, mongoose_1.Prop)({ required: true }),
+    __metadata("design:type", Date)
+], Purchase.prototype, "purchaseDate", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 50, description: 'Total amount of purchase' }),
+    (0, mongoose_1.Prop)({ required: true }),
+    __metadata("design:type", Number)
+], Purchase.prototype, "totalAmount", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 'pending', description: 'Status of the purchase' }),
+    (0, mongoose_1.Prop)({ default: 'pending' }),
+    __metadata("design:type", String)
+], Purchase.prototype, "status", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 'Regular monthly supply', description: 'Additional notes' }),
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Purchase.prototype, "notes", void 0);
 exports.Purchase = Purchase = __decorate([
-    (0, mongoose_1.Schema)()
+    (0, mongoose_1.Schema)({ timestamps: true })
 ], Purchase);
 exports.PurchaseSchema = mongoose_1.SchemaFactory.createForClass(Purchase);
 //# sourceMappingURL=purchase.schema.js.map
