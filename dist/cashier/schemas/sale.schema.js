@@ -9,8 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SaleSchema = exports.Sale = exports.SaleItem = exports.PaymentMethod = void 0;
+exports.SaleSchema = exports.Sale = exports.Insurance = exports.SaleItem = exports.PaymentMethod = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
+const mongoose_2 = require("mongoose");
 var PaymentMethod;
 (function (PaymentMethod) {
     PaymentMethod["MOMO"] = "MOMO";
@@ -32,29 +33,51 @@ __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", Number)
 ], SaleItem.prototype, "unitPrice", void 0);
-let Sale = class Sale {
+let Insurance = class Insurance {
+};
+exports.Insurance = Insurance;
+__decorate([
+    (0, mongoose_1.Prop)({ required: true }),
+    __metadata("design:type", Number)
+], Insurance.prototype, "amount", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, enum: ['pending', 'paid'] }),
+    __metadata("design:type", String)
+], Insurance.prototype, "status", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Insurance.prototype, "provider", void 0);
+exports.Insurance = Insurance = __decorate([
+    (0, mongoose_1.Schema)()
+], Insurance);
+let Sale = class Sale extends mongoose_2.Document {
 };
 exports.Sale = Sale;
 __decorate([
-    (0, mongoose_1.Prop)({ type: [SaleItem], required: true }),
-    __metadata("design:type", Array)
-], Sale.prototype, "items", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
+    (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", Number)
-], Sale.prototype, "totalPrice", void 0);
+], Sale.prototype, "amount", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
-    __metadata("design:type", String)
-], Sale.prototype, "cashierId", void 0);
-__decorate([
-    (0, mongoose_1.Prop)(),
+    (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", Date)
 ], Sale.prototype, "date", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ enum: PaymentMethod, required: true }),
+    (0, mongoose_1.Prop)({ required: true, enum: ['cash', 'pos', 'momo'] }),
     __metadata("design:type", String)
 ], Sale.prototype, "paymentMethod", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ type: Insurance }),
+    __metadata("design:type", Insurance)
+], Sale.prototype, "insurance", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Sale.prototype, "customerName", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", Array)
+], Sale.prototype, "items", void 0);
 exports.Sale = Sale = __decorate([
     (0, mongoose_1.Schema)()
 ], Sale);

@@ -8,13 +8,11 @@ export class Purchase extends Document {
   @Prop({ required: true })
   medicineName: string;
 
-  @ApiProperty({ example: 100, description: 'Quantity of medicine purchased' })
-  @Prop({ required: true })
-  quantity: number;
+  
 
-  @ApiProperty({ example: 0.5, description: 'Price per unit' })
+  @ApiProperty({ example: 200, description: 'Total amount of purchase' })
   @Prop({ required: true })
-  unitPrice: number;
+   totalAmount: number;
 
   @ApiProperty({ example: 'ABC Suppliers', description: 'Name of the supplier' })
   @Prop({ required: true })
@@ -24,9 +22,6 @@ export class Purchase extends Document {
   @Prop({ required: true })
   purchaseDate: Date;
 
-  @ApiProperty({ example: 50, description: 'Total amount of purchase' })
-  @Prop({ required: true })
-  totalAmount: number;
 
   @ApiProperty({ example: 'pending', description: 'Status of the purchase' })
   @Prop({ default: 'pending' })

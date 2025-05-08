@@ -21,17 +21,11 @@ __decorate([
     __metadata("design:type", String)
 ], CreatePurchaseDto.prototype, "medicineName", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 100, description: 'Quantity of medicine purchased' }),
-    (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.Min)(1),
-    __metadata("design:type", Number)
-], CreatePurchaseDto.prototype, "quantity", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({ example: 0.5, description: 'Price per unit' }),
+    (0, swagger_1.ApiProperty)({ example: 200, description: 'Total amount of purchase' }),
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.Min)(0),
     __metadata("design:type", Number)
-], CreatePurchaseDto.prototype, "unitPrice", void 0);
+], CreatePurchaseDto.prototype, "totalAmount", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ example: 'ABC Suppliers', description: 'Name of the supplier' }),
     (0, class_validator_1.IsString)(),
@@ -42,12 +36,6 @@ __decorate([
     (0, class_validator_1.IsDate)(),
     __metadata("design:type", Date)
 ], CreatePurchaseDto.prototype, "purchaseDate", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({ example: 50, description: 'Total amount of purchase' }),
-    (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.Min)(0),
-    __metadata("design:type", Number)
-], CreatePurchaseDto.prototype, "totalAmount", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ example: 'pending', description: 'Status of the purchase' }),
     (0, class_validator_1.IsString)(),

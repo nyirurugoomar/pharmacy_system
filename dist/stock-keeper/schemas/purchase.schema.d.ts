@@ -1,11 +1,9 @@
 import { Document } from 'mongoose';
 export declare class Purchase extends Document {
     medicineName: string;
-    quantity: number;
-    unitPrice: number;
+    totalAmount: number;
     supplier: string;
     purchaseDate: Date;
-    totalAmount: number;
     status: string;
     notes: string;
 }

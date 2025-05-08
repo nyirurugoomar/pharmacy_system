@@ -22,15 +22,10 @@ __decorate([
     __metadata("design:type", String)
 ], Purchase.prototype, "medicineName", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 100, description: 'Quantity of medicine purchased' }),
+    (0, swagger_1.ApiProperty)({ example: 200, description: 'Total amount of purchase' }),
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", Number)
-], Purchase.prototype, "quantity", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({ example: 0.5, description: 'Price per unit' }),
-    (0, mongoose_1.Prop)({ required: true }),
-    __metadata("design:type", Number)
-], Purchase.prototype, "unitPrice", void 0);
+], Purchase.prototype, "totalAmount", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ example: 'ABC Suppliers', description: 'Name of the supplier' }),
     (0, mongoose_1.Prop)({ required: true }),
@@ -41,11 +36,6 @@ __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", Date)
 ], Purchase.prototype, "purchaseDate", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({ example: 50, description: 'Total amount of purchase' }),
-    (0, mongoose_1.Prop)({ required: true }),
-    __metadata("design:type", Number)
-], Purchase.prototype, "totalAmount", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ example: 'pending', description: 'Status of the purchase' }),
     (0, mongoose_1.Prop)({ default: 'pending' }),

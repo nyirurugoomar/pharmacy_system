@@ -6,15 +6,13 @@ export class CreatePurchaseDto {
   @IsString()
   medicineName: string;
 
-  @ApiProperty({ example: 100, description: 'Quantity of medicine purchased' })
-  @IsNumber()
-  @Min(1)
-  quantity: number;
+  
+  
 
-  @ApiProperty({ example: 0.5, description: 'Price per unit' })
+  @ApiProperty({ example: 200, description: 'Total amount of purchase' })
   @IsNumber()
   @Min(0)
-  unitPrice: number;
+  totalAmount: number;
 
   @ApiProperty({ example: 'ABC Suppliers', description: 'Name of the supplier' })
   @IsString()
@@ -24,10 +22,7 @@ export class CreatePurchaseDto {
   @IsDate()
   purchaseDate: Date;
 
-  @ApiProperty({ example: 50, description: 'Total amount of purchase' })
-  @IsNumber()
-  @Min(0)
-  totalAmount: number;
+  
 
   @ApiProperty({ example: 'pending', description: 'Status of the purchase' })
   @IsString()

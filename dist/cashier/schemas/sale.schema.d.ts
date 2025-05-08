@@ -10,19 +10,29 @@ export declare class SaleItem {
     quantity: number;
     unitPrice: number;
 }
-export declare class Sale {
-    items: SaleItem[];
-    totalPrice: number;
-    cashierId: string;
-    date: Date;
-    paymentMethod: PaymentMethod;
+export declare class Insurance {
+    amount: number;
+    status: string;
+    provider: string;
 }
-export declare const SaleSchema: import("mongoose").Schema<Sale, import("mongoose").Model<Sale, any, any, any, Document<unknown, any, Sale> & Sale & {
-    _id: import("mongoose").Types.ObjectId;
-} & {
+export declare class Sale extends Document {
+    amount: number;
+    date: Date;
+    paymentMethod: string;
+    insurance?: Insurance;
+    customerName: string;
+    items: Array<{
+        name: string;
+        quantity: number;
+        price: number;
+    }>;
+}
+export declare const SaleSchema: import("mongoose").Schema<Sale, import("mongoose").Model<Sale, any, any, any, Document<unknown, any, Sale> & Sale & Required<{
+    _id: unknown;
+}> & {
     __v: number;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Sale, Document<unknown, {}, import("mongoose").FlatRecord<Sale>> & import("mongoose").FlatRecord<Sale> & {
-    _id: import("mongoose").Types.ObjectId;
-} & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Sale, Document<unknown, {}, import("mongoose").FlatRecord<Sale>> & import("mongoose").FlatRecord<Sale> & Required<{
+    _id: unknown;
+}> & {
     __v: number;
 }>;

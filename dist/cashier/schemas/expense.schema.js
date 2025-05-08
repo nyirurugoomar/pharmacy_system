@@ -17,16 +17,32 @@ let Expense = class Expense extends mongoose_2.Document {
 exports.Expense = Expense;
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
-    __metadata("design:type", String)
-], Expense.prototype, "category", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", Number)
 ], Expense.prototype, "amount", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", Date)
 ], Expense.prototype, "date", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true }),
+    __metadata("design:type", String)
+], Expense.prototype, "description", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, enum: ['pending', 'paid'] }),
+    __metadata("design:type", String)
+], Expense.prototype, "status", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true, enum: ['purchase', 'utility', 'salary', 'other'] }),
+    __metadata("design:type", String)
+], Expense.prototype, "type", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Expense.prototype, "supplier", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], Expense.prototype, "reference", void 0);
 exports.Expense = Expense = __decorate([
     (0, mongoose_1.Schema)()
 ], Expense);

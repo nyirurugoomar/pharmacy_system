@@ -22,6 +22,8 @@ const create_earning_dto_1 = require("./dto/create-earning.dto");
 const create_expense_dto_1 = require("./dto/create-expense.dto");
 const passport_1 = require("@nestjs/passport");
 const roles_decorator_1 = require("../auth/roles.decorator");
+const jwt_auth_guard_1 = require("../auth/guards/jwt-auth.guard");
+const roles_guard_1 = require("../auth/guards/roles.guard");
 let CashierController = class CashierController {
     constructor(cashierService) {
         this.cashierService = cashierService;
@@ -49,6 +51,26 @@ let CashierController = class CashierController {
     }
     getNetProfit(date) {
         return this.cashierService.getNetProfit(new Date(date));
+    }
+    async getInsuranceStatus(startDate, endDate) {
+        return this.cashierService.getInsuranceStatus(startDate, endDate);
+    }
+    async getPurchaseExpenses(startDate, endDate) {
+        return this.cashierService.getPurchaseExpenses(startDate, endDate);
+    }
+    async exportToExcel(res, startDate, endDate) {
+        const workbook = await this.cashierService.exportToExcel(startDate, endDate);
+        res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        res.setHeader('Content-Disposition', 'attachment; filename=pharmacy-report.xlsx');
+        await workbook.xlsx.write(res);
+        res.end();
+    }
+    async exportToPDF(res, startDate, endDate) {
+        const doc = await this.cashierService.exportToPDF(startDate, endDate);
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=pharmacy-report.pdf');
+        doc.pipe(res);
+        doc.end();
     }
 };
 exports.CashierController = CashierController;
@@ -115,9 +137,67 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], CashierController.prototype, "getNetProfit", null);
+__decorate([
+    (0, common_1.Get)('insurance-status'),
+    (0, roles_decorator_1.Roles)('admin'),
+    (0, swagger_1.ApiOperation)({ summary: 'Get insurance claims status' }),
+    (0, swagger_1.ApiQuery)({ name: 'startDate', required: false, type: Date }),
+    (0, swagger_1.ApiQuery)({ name: 'endDate', required: false, type: Date }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Returns insurance claims statistics' }),
+    __param(0, (0, common_1.Query)('startDate')),
+    __param(1, (0, common_1.Query)('endDate')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Date,
+        Date]),
+    __metadata("design:returntype", Promise)
+], CashierController.prototype, "getInsuranceStatus", null);
+__decorate([
+    (0, common_1.Get)('purchase-expenses'),
+    (0, roles_decorator_1.Roles)('admin'),
+    (0, swagger_1.ApiOperation)({ summary: 'Get purchase expenses and credits' }),
+    (0, swagger_1.ApiQuery)({ name: 'startDate', required: false, type: Date }),
+    (0, swagger_1.ApiQuery)({ name: 'endDate', required: false, type: Date }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Returns purchase expenses statistics' }),
+    __param(0, (0, common_1.Query)('startDate')),
+    __param(1, (0, common_1.Query)('endDate')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Date,
+        Date]),
+    __metadata("design:returntype", Promise)
+], CashierController.prototype, "getPurchaseExpenses", null);
+__decorate([
+    (0, common_1.Get)('export/excel'),
+    (0, roles_decorator_1.Roles)('admin'),
+    (0, swagger_1.ApiOperation)({ summary: 'Export data to Excel' }),
+    (0, swagger_1.ApiQuery)({ name: 'startDate', required: false, type: Date }),
+    (0, swagger_1.ApiQuery)({ name: 'endDate', required: false, type: Date }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Returns Excel file' }),
+    __param(0, (0, common_1.Res)()),
+    __param(1, (0, common_1.Query)('startDate')),
+    __param(2, (0, common_1.Query)('endDate')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Date,
+        Date]),
+    __metadata("design:returntype", Promise)
+], CashierController.prototype, "exportToExcel", null);
+__decorate([
+    (0, common_1.Get)('export/pdf'),
+    (0, roles_decorator_1.Roles)('admin'),
+    (0, swagger_1.ApiOperation)({ summary: 'Export data to PDF' }),
+    (0, swagger_1.ApiQuery)({ name: 'startDate', required: false, type: Date }),
+    (0, swagger_1.ApiQuery)({ name: 'endDate', required: false, type: Date }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Returns PDF file' }),
+    __param(0, (0, common_1.Res)()),
+    __param(1, (0, common_1.Query)('startDate')),
+    __param(2, (0, common_1.Query)('endDate')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Date,
+        Date]),
+    __metadata("design:returntype", Promise)
+], CashierController.prototype, "exportToPDF", null);
 exports.CashierController = CashierController = __decorate([
     (0, swagger_1.ApiTags)('Cashier'),
-    (0, common_1.UseGuards)((0, passport_1.AuthGuard)('jwt')),
+    (0, common_1.UseGuards)((0, passport_1.AuthGuard)('jwt'), jwt_auth_guard_1.JwtAuthGuard, roles_guard_1.RolesGuard),
     (0, common_1.Controller)('cashier'),
     __metadata("design:paramtypes", [cashier_service_1.CashierService])
 ], CashierController);

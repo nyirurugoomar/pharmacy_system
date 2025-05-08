@@ -21,21 +21,40 @@ export class SaleItem {
   }
 
 @Schema()
-export class Sale {
-  @Prop({ type: [SaleItem], required: true })
-  items: SaleItem[];  // <= Now multiple products
+export class Insurance {
+  @Prop({ required: true })
+  amount: number;
+
+  @Prop({ required: true, enum: ['pending', 'paid'] })
+  status: string;
 
   @Prop()
-  totalPrice: number; // Total for all items
+  provider: string;
+}
 
-  @Prop()
-  cashierId: string;
+@Schema()
+export class Sale extends Document {
+  @Prop({ required: true })
+  amount: number;
 
-  @Prop()
+  @Prop({ required: true })
   date: Date;
 
-  @Prop({ enum: PaymentMethod, required: true })
-  paymentMethod: PaymentMethod;
+  @Prop({ required: true, enum: ['cash', 'pos', 'momo'] })
+  paymentMethod: string;
+
+  @Prop({ type: Insurance })
+  insurance?: Insurance;
+
+  @Prop()
+  customerName: string;
+
+  @Prop()
+  items: Array<{
+    name: string;
+    quantity: number;
+    price: number;
+  }>;
 }
 
 export const SaleSchema = SchemaFactory.createForClass(Sale);

@@ -3,6 +3,7 @@ import { CreateSaleDto } from './dto/create-sale.dto';
 import { CreateCashierDto } from './dto/create-cashier.dto';
 import { CreateEarningDto } from './dto/create-earning.dto';
 import { CreateExpenseDto } from './dto/create-expense.dto';
+import { Response } from 'express';
 export declare class CashierController {
     private readonly cashierService;
     constructor(cashierService: CashierService);
@@ -42,9 +43,34 @@ export declare class CashierController {
         __v: number;
     })[]>;
     getNetProfit(date: string): Promise<{
-        date: Date;
-        totalEarnings: number;
-        totalExpenses: number;
+        earnings: number;
+        expenses: number;
         netProfit: number;
+        breakdown: {
+            posTotal: number;
+            cashTotal: number;
+            momoTotal: number;
+            totalTransactions: number;
+        };
     }>;
+    getInsuranceStatus(startDate?: Date, endDate?: Date): Promise<{
+        paymentRate: number;
+        totalInsuranceAmount: number;
+        totalInsuranceClaims: number;
+        pendingAmount: number;
+        pendingClaims: number;
+        paidAmount: number;
+        paidClaims: number;
+    }>;
+    getPurchaseExpenses(startDate?: Date, endDate?: Date): Promise<{
+        paymentRate: number;
+        totalAmount: number;
+        totalExpenses: number;
+        pendingAmount: number;
+        pendingExpenses: number;
+        paidAmount: number;
+        paidExpenses: number;
+    }>;
+    exportToExcel(res: Response, startDate?: Date, endDate?: Date): Promise<void>;
+    exportToPDF(res: Response, startDate?: Date, endDate?: Date): Promise<void>;
 }

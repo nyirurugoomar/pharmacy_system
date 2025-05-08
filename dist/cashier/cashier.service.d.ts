@@ -7,6 +7,7 @@ import { Earning } from './schemas/earning.schema';
 import { Expense } from './schemas/expense.schema';
 import { CreateEarningDto } from './dto/create-earning.dto';
 import { CreateExpenseDto } from './dto/create-expense.dto';
+import * as ExcelJS from 'exceljs';
 export declare class CashierService {
     private saleModel;
     private cashierModel;
@@ -53,10 +54,47 @@ export declare class CashierService {
     }> & {
         __v: number;
     })[]>;
-    getNetProfit(date: Date): Promise<{
-        date: Date;
-        totalEarnings: number;
-        totalExpenses: number;
+    getNetProfit(date?: Date): Promise<{
+        earnings: number;
+        expenses: number;
         netProfit: number;
+        breakdown: {
+            posTotal: number;
+            cashTotal: number;
+            momoTotal: number;
+            totalTransactions: number;
+        };
     }>;
+    getDailyReport(date: Date): Promise<{
+        date: Date;
+        earnings: number;
+        expenses: number;
+        netProfit: number;
+        breakdown: {
+            posTotal: number;
+            cashTotal: number;
+            momoTotal: number;
+            totalTransactions: number;
+        };
+    }>;
+    getInsuranceStatus(startDate?: Date, endDate?: Date): Promise<{
+        paymentRate: number;
+        totalInsuranceAmount: number;
+        totalInsuranceClaims: number;
+        pendingAmount: number;
+        pendingClaims: number;
+        paidAmount: number;
+        paidClaims: number;
+    }>;
+    getPurchaseExpenses(startDate?: Date, endDate?: Date): Promise<{
+        paymentRate: number;
+        totalAmount: number;
+        totalExpenses: number;
+        pendingAmount: number;
+        pendingExpenses: number;
+        paidAmount: number;
+        paidExpenses: number;
+    }>;
+    exportToExcel(startDate?: Date, endDate?: Date): Promise<ExcelJS.Workbook>;
+    exportToPDF(startDate?: Date, endDate?: Date): Promise<PDFKit.PDFDocument>;
 }
