@@ -4,9 +4,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 @Schema({ timestamps: true })
 export class Purchase extends Document {
-  @ApiProperty({ example: 'Paracetamol 500mg', description: 'Name of the medicine' })
-  @Prop({ required: true })
-  medicineName: string;
+  
 
   
 
@@ -23,8 +21,8 @@ export class Purchase extends Document {
   purchaseDate: Date;
 
 
-  @ApiProperty({ example: 'pending', description: 'Status of the purchase' })
-  @Prop({ default: 'pending' })
+  @ApiProperty({ example: 'credit', description: 'Status of the purchase' })
+  @Prop({ default: 'credit' })
   status: string;
 
   @ApiProperty({ example: 'Regular monthly supply', description: 'Additional notes' })

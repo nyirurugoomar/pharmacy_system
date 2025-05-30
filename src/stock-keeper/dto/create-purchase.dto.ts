@@ -2,12 +2,7 @@ import { IsString, IsNumber, IsDate, IsOptional, Min } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreatePurchaseDto {
-  @ApiProperty({ example: 'Paracetamol 500mg', description: 'Name of the medicine' })
-  @IsString()
-  medicineName: string;
-
-  
-  
+ 
 
   @ApiProperty({ example: 200, description: 'Total amount of purchase' })
   @IsNumber()
@@ -24,7 +19,7 @@ export class CreatePurchaseDto {
 
   
 
-  @ApiProperty({ example: 'pending', description: 'Status of the purchase' })
+  @ApiProperty({ example: 'credit', description: 'Status of the purchase' })
   @IsString()
   @IsOptional()
   status?: string;

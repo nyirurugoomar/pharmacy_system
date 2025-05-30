@@ -30,4 +30,5 @@ exports.CashierModule = CashierModule = __decorate([
         providers: [cashier_service_1.CashierService]
     })
 ], CashierModule);
+3973218747;
 //# sourceMappingURL=cashier.module.js.map

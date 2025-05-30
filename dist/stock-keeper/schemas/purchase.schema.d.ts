@@ -1,6 +1,5 @@
 import { Document } from 'mongoose';
 export declare class Purchase extends Document {
-    medicineName: string;
     totalAmount: number;
     supplier: string;
     purchaseDate: Date;

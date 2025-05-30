@@ -16,11 +16,6 @@ class CreatePurchaseDto {
 }
 exports.CreatePurchaseDto = CreatePurchaseDto;
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 'Paracetamol 500mg', description: 'Name of the medicine' }),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], CreatePurchaseDto.prototype, "medicineName", void 0);
-__decorate([
     (0, swagger_1.ApiProperty)({ example: 200, description: 'Total amount of purchase' }),
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.Min)(0),
@@ -37,7 +32,7 @@ __decorate([
     __metadata("design:type", Date)
 ], CreatePurchaseDto.prototype, "purchaseDate", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 'pending', description: 'Status of the purchase' }),
+    (0, swagger_1.ApiProperty)({ example: 'credit', description: 'Status of the purchase' }),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)

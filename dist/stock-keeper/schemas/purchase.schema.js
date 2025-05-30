@@ -17,11 +17,6 @@ let Purchase = class Purchase extends mongoose_2.Document {
 };
 exports.Purchase = Purchase;
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 'Paracetamol 500mg', description: 'Name of the medicine' }),
-    (0, mongoose_1.Prop)({ required: true }),
-    __metadata("design:type", String)
-], Purchase.prototype, "medicineName", void 0);
-__decorate([
     (0, swagger_1.ApiProperty)({ example: 200, description: 'Total amount of purchase' }),
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", Number)
@@ -37,8 +32,8 @@ __decorate([
     __metadata("design:type", Date)
 ], Purchase.prototype, "purchaseDate", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ example: 'pending', description: 'Status of the purchase' }),
-    (0, mongoose_1.Prop)({ default: 'pending' }),
+    (0, swagger_1.ApiProperty)({ example: 'credit', description: 'Status of the purchase' }),
+    (0, mongoose_1.Prop)({ default: 'credit' }),
     __metadata("design:type", String)
 ], Purchase.prototype, "status", void 0);
 __decorate([

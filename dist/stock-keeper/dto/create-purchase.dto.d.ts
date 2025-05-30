@@ -1,5 +1,4 @@
 export declare class CreatePurchaseDto {
-    medicineName: string;
     totalAmount: number;
     supplier: string;
     purchaseDate: Date;
